@@ -2,6 +2,8 @@ package adt.rbtree;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Test;
 import org.junit.Before;
 
@@ -143,7 +145,9 @@ public class StudentTestRBTree {
 		myRB.insert(15);
 		myRB.insert(7);
 		myRB.insert(5);
-
+		
+		
+		
 		int len = myRB.size();
 		RBNode<Integer>[] result = myRB.rbPreOrder();
 		for (int i = 0; i < len; i++) {
@@ -151,6 +155,16 @@ public class StudentTestRBTree {
 			assertEquals(preOrderColour[i], result[i].getColour());
 		}
 		assertTrue(myRB.verifyProperties());
+	}
+	@Test
+	public void TestMy() {
+		for(int i = 0; i < 100; i++) {
+			myRB.insert(new Random().nextInt(100));
+			assertTrue(myRB.verifyProperties());
+		}
+		int i = myRB.blackHeight();
+		RBNode<Integer>[] result = myRB.rbPreOrder();
+		
 	}
 
 }
